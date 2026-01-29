@@ -1,0 +1,365 @@
+// styles.scss
+@import url('https://fonts.cdnfonts.com/css/mathanifo-script');
+@import url('https://fonts.cdnfonts.com/css/bitter-mind');
+
+// Then use it in your styles
+$font-mathanifo: 'Mathanifo Script', sans-serif;
+
+// Color Variables
+$lemon-yellow: #FFF4B7;
+$lemon-bright: #FFE66D;
+$lemon-dark: #F4D35E;
+$sage-green: #A8DADC;
+$forest-green: #457B9D;
+$cream: #FFF9EC;
+$soft-white: #FEFEFE;
+$charcoal: #2D3142;
+
+// Typography
+$serif: 'Cormorant Garamond', serif;
+$sans: 'Montserrat', sans-serif;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: $sans;
+    color: $charcoal;
+    background: linear-gradient(135deg, $soft-white 0%, $cream 100%);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+// Lemon Decorations
+.lemon-decoration {
+    position: fixed;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle at 30% 30%, $lemon-bright, $lemon-dark);
+    border-radius: 50% 50% 50% 0;
+    opacity: 0.15;
+    z-index: -1;
+    
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        right: 10px;
+        width: 30px;
+        height: 20px;
+        background: $sage-green;
+        border-radius: 50% 50% 0 0;
+        transform: rotate(-30deg);
+    }
+}
+
+.lemon-top-left {
+    top: -50px;
+    left: -50px;
+    transform: rotate(-15deg);
+}
+
+.lemon-top-right {
+    top: 100px;
+    right: -60px;
+    width: 120px;
+    height: 120px;
+    transform: rotate(45deg);
+}
+
+.lemon-bottom-left {
+    bottom: 100px;
+    left: 50px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-60deg);
+}
+
+// Hero Section
+.hero {
+    text-align: center;
+    padding: 8rem 2rem 6rem;
+    position: relative;
+    // background: linear-gradient(180deg, rgba(255, 244, 183, 0.3) 0%, transparent 100%);
+    
+    background: no-repeat center/100% url("../../assets/background/lemon-bg.png");
+    
+    .lemon-branch {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 2rem;
+        background: 
+            radial-gradient(circle at center, $lemon-bright 20px, transparent 20px),
+            radial-gradient(circle at center, $lemon-dark 25px, transparent 25px);
+        background-position: center;
+        background-repeat: no-repeat;
+        filter: drop-shadow(0 5px 15px rgba(244, 211, 94, 0.3));
+    }
+}
+
+.couple-names {
+    font-family: $font-mathanifo;
+    font-size: 5rem;
+    font-weight: 300;
+    color: $forest-green;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    
+    @media (max-width: 768px) {
+        font-size: 3.5rem;
+    }
+}
+
+.tagline {
+    font-family: $serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: $charcoal;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+}
+
+.wedding-date {
+    font-size: 1.2rem;
+    color: $forest-green;
+    font-weight: 400;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+// Story Section
+.story {
+    padding: 5rem 0;
+    
+    h2 {
+        font-family: $font-mathanifo;
+        font-size: 3rem;
+        text-align: center;
+        color: $forest-green;
+        margin-bottom: 2rem;
+        position: relative;
+        
+        &::after {
+            content: '🍋';
+            display: block;
+            font-size: 2rem;
+            margin-top: 1rem;
+        }
+    }
+    
+    p {        
+        // font-family: $font-mathanifo;
+        max-width: 800px;
+        margin: 0 auto 1.5rem;
+        font-size: 2rem;
+        text-align: center;
+        line-height: 1.8;
+        color: $charcoal;
+    }
+}
+
+// Details Section
+.details {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(168, 218, 220, 0.1) 0%, rgba(255, 230, 109, 0.1) 100%);
+    
+    h2 {
+        font-family: 'Bitter Mind', sans-serif;
+        font-size: 3rem;
+        text-align: center;
+        color: $forest-green;
+        margin-bottom: 3rem;
+    }
+}
+
+.faq {
+    padding: 5rem 0;
+    background: linear-gradient(135deg, rgba(168, 218, 220, 0.1) 0%, rgba(255, 230, 109, 0.1) 100%);
+    
+    h5 {
+        font-family: $font-mathanifo;
+        font-size: 3rem;
+        text-align: center;
+        color: $forest-green;
+        // margin-bottom: ;
+    }
+
+    ul {
+        text-align: center;
+        color: $forest-green;
+    }
+    li {
+        margin-bottom: 2rem;
+    }
+}
+
+.detail-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.card {
+    background: $soft-white;
+    padding: 2.5rem;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid $lemon-yellow;
+    
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(244, 211, 94, 0.2);
+    }
+    
+    .card-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    h3 {
+        font-family: $serif;
+        font-size: 1.8rem;
+        color: $forest-green;
+        margin-bottom: 1rem;
+    }
+    
+    .time {
+        font-weight: 600;
+        font-size: 1.1rem;
+        color: $lemon-dark;
+        margin-bottom: 0.5rem;
+    }
+    
+    p {
+        margin: 0.5rem 0;
+        color: $charcoal;
+    }
+}
+
+// RSVP Section
+.rsvp {
+    padding: 5rem 0;
+    
+    h2 {
+        font-family: $font-mathanifo;
+        font-size: 3rem;
+        text-align: center;
+        color: $forest-green;
+        margin-bottom: 1rem;
+    }
+    
+    .rsvp-subtitle {
+        text-align: center;
+        font-size: 1.1rem;
+        color: $charcoal;
+        margin-bottom: 3rem;
+        font-style: italic;
+    }
+}
+
+.rsvp-form {
+    max-width: 600px;
+    margin: 0 auto;
+    background: $soft-white;
+    padding: 3rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    border: 2px solid $lemon-yellow;
+    
+    .form-group {
+        margin-bottom: 1.5rem;
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid $lemon-yellow;
+            border-radius: 8px;
+            font-family: $sans;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: $cream;
+            
+            &:focus {
+                outline: none;
+                border-color: $lemon-dark;
+            }
+        }
+        
+        textarea {
+            resize: vertical;
+        }
+    }
+    
+    .submit-btn {
+        width: 100%;
+        padding: 1.2rem;
+        background: linear-gradient(135deg, $lemon-dark, $lemon-bright);
+        color: $charcoal;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(244, 211, 94, 0.4);
+        }
+    }
+}
+
+// Footer
+footer {
+    padding: 4rem 0 2rem;
+    text-align: center;
+    background: linear-gradient(180deg, transparent 0%, rgba(168, 218, 220, 0.15) 100%);
+    
+    .footer-quote {
+        font-family: $serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: $forest-green;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-names {
+        font-size: 1.2rem;
+        color: $charcoal;
+        font-weight: 300;
+        letter-spacing: 2px;
+    }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+    .hero {
+        padding: 5rem 1rem 4rem;
+    }
+    
+    .story, .details, .rsvp {
+        padding: 3rem 0;
+    }
+    
+    .rsvp-form {
+        padding: 2rem;
+    }
+    
+    .detail-cards {
+        grid-template-columns: 1fr;
+    }
+}

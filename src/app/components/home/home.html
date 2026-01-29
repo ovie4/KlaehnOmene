@@ -1,0 +1,234 @@
+    <div class="lemon-decoration lemon-top-left"></div>
+    <div class="lemon-decoration lemon-top-right"></div>
+    <div class="lemon-decoration lemon-bottom-left"></div>
+    
+    <header class="hero">
+        <div class="lemon-branch"></div>
+        <h1 class="couple-names">Ann-Kathrin and Ovie</h1>
+        <p class="tagline">When life gives you love, make it sweet</p>
+        <p class="wedding-date">May 21, 2026</p>
+    </header>
+
+    <section class="story">
+        <div class="container">
+            <h2>We're getting married!</h2>
+            <p>We met, fell in love, and decided to get some tax benefits. The End...</p>
+            <p>We’re so happy you’re here! This little site has all the info you’ll need for our big day – from where to be and when, to tips on where to stay and what to expect.</p>
+
+            <p>We can’t wait to celebrate with all of you – eat, drink, dance, and make memories together. Thanks for being part of our adventure!
+
+                Lots of love,
+                Anni & Ovie
+            </p>
+        </div>
+    </section>
+
+    <section class="details">
+        <div class="container">
+            <h2>Celebration Details/Schedule</h2>
+            <div class="detail-cards">
+                <h2>21 May 2026</h2>
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Ceremony</h3>
+                    <p class="time">1300</p>
+                    <p>Wedding Ceremony at Chiostro di San Francesco (The Cloisters Sorrento)</p>
+                    <p>Via S. Francesco, 12, 80067 Sorrento NA, Italien</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Reception</h3>
+                    <p class="time">1400-2359</p>
+                    <p>Wedding Reception at Foreigner's Club</p>
+                    <p>Via Luigi de Maio, 35, 80067 Sorrento NA, Italien</p>
+                </div>
+            </div>
+            <div class="detail-cards">
+                <h2>22 May 2026</h2>
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Morning After</h3>
+                    <p class="time">1000 - 1800</p>
+                    <p>Relaxed Morning in Sorrento</p>
+                    <p>80067 Sorrent, Neapel, Italien</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Dinner</h3>
+                    <p class="time">1800</p>
+                    <p>Post-Wedding Dinner at Cafè Latino</p>
+                    <p>Corso Italia, 24, 80067 Sorrento NA, Italien</p>
+                </div>
+            </div>
+            
+            <div class="detail-cards">
+                <h2>23 May 2026</h2>
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Boat Trip</h3>
+                    <p class="time">1030 - 1830</p>
+                    <p>Day Trip To Capri</p>
+                    <p>80076 Capri, Neapel, Italien</p>
+                </div>
+            </div>
+            <!-- <div class="detail-cards">
+                <div class="card">
+                    <div class="card-icon">🍋</div>
+                    <h3>Ceremony</h3>
+                    <p class="time">4:00 PM</p>
+                    <p>Wedding Reception at Foreigner's Club</p>
+                    <p>Sorrento</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🥂</div>
+                    <h3>Reception</h3>
+                    <p class="time">6:00 PM</p>
+                    <p>Wedding Reception at Foreigner's Club</p>
+                    <p>Cocktails, Dinner & Dancing</p>
+                    <p>Via Luigi de Maio, 35, 80067 Sorrento NA, Italien</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">🌿</div>
+                    <h3>Attire</h3>
+                    <p class="time">Sorrento Chic</p>
+                    <p>Light, summery colors welcome</p>
+                    <p>Think sunshine & citrus groves</p>
+                </div>
+            </div> -->
+        </div>
+    </section>
+
+    @if(showInitialRsvp){
+        <section class="rsvp">
+            <div class="container">
+                <h2>Join Our Celebration</h2>
+                <p class="rsvp-subtitle">Please respond by May 1, 2026</p>
+                
+                <form class="rsvp-form" [formGroup]="rsvpForm">
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" formControlName="name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" formControlName="email" placeholder="Email Address" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Dietary Restrictions</label>
+                        <select formControlName="attending" required>
+                            <!-- <option value="">Will you be attending?</option> -->
+                            <option value="true">Joyfully accepts</option>
+                            <option value="false">Regretfully declines</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <input formControlName="guests" type="number" min="1" max="10" placeholder="Number of Guests">
+                    </div>
+                    <div class="form-group">
+                        <label>Dietary Restrictions</label>
+                        <select formControlName="dietaryReqs" placeholder="Dietary Restrictions" required>
+                            <!-- <option value="">None/Cool Person</option> -->
+                            <option value="omni">None/Cool Person</option>
+                            <option value="vegetarian">Vegetarian</option>
+                            <option value="vegan">Vegan</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Special requests" rows="3"></textarea>
+                    </div>
+                    @if(showRegistrations){
+                        <div>
+                            <div class="container">
+                                <h4>Register for Events</h4>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" formControlName="ceremony" for="ceremony-switch">Ceremony</label>
+                                    <input class="form-check-input" value="ceremonyRsvp" type="checkbox" role="switch" switch id="ceremony-switch">
+                                </div>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" formControlName="dinner" for="dinner-switch">Dinner</label>
+                                    <input class="form-check-input" type="checkbox" role="switch" switch id="dinner-switch">
+                                </div>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" formControlName="boating" for="boating-switch">Boating</label>
+                                    <input class="form-check-input" type="checkbox" role="switch" switch id="boating-switch">
+                                </div>
+                                <div class="form-check form-switch">
+                                    <label class="form-check-label" formControlName="capri" for="capri-switch">Capri</label>
+                                    <input class="form-check-input" type="checkbox" role="switch" switch id="capri-switch">
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <button type="submit" (click)="onSubmit()" class="submit-btn">Send RSVP</button>
+                </form>
+            </div>
+        </section>
+    }
+
+    <section class="faq">
+        <div class="container">
+            <h2>FAQ</h2>
+            <ul>
+                <li>
+                    <h5>How do we get from the wedding ceremony to the reception?</h5>
+                    <p>The ceremony at the Cloisters is only a 3-minute walk from the wedding reception at the Foreigner's Club.</p>
+                </li>
+                <li>
+                    <h5></h5>What is planned besides the wedding day?
+                    <p>We’d love to spend more time with you beyond the wedding day! 
+                    <p>Here’s what’s included as part of our wedding festivities:</p>
+
+                    <p>- Wedding & reception on Thursday</p>
+                    <p>- Post-wedding dinner on Friday</p>
+                    <p>- Day Trip to Capri on Saturday with Ferry and Lunch</p>
+                </li>
+                <li>
+                    <h5>How do we get from the airport to Sorrento? How do we get around?</h5>
+                    <p>From the Naples International Airport (NAP) to Sorrento you can get by train or you can rent a car.</p>
+                </li>
+                <li>
+                    <h5>Where can I stay?</h5>
+                    <p>
+                        You don't necessarily need to stay in Sorrento. You can find accomodation also in the nearby villages such as Vico Equense or Seiano. 
+                        Seiano and Vico Equense have a train station and are only a few stops away from Sorrento.
+                    </p>
+                    <p>Please note that some hotels/Airbnbs can be somewhere in the mountains. 
+                        Make sure to check beforehand on Google Maps how far the accomodation is from the Cloisters (Chiostro di San Francesco) 
+                        where the wedding will take place.
+                    </p>
+                </li>
+                <li>
+                    <h5>How can we get around?</h5>
+                    <p>
+                        You can either rent a car or you can take the train. Taxis are also available.
+                    </p>
+                    <p>
+                        It's easy to get around by train. During the night there are busses instead of the train.
+                    </p>
+                    <p>
+                        Please note that driving in this area can be challenging as Napoli drivers are quite intense and the serpentines can be nerve-wrecking as well. If you feel comfortable driving in Berlin-Neukölln or Nigeria, you'll be fine though
+                    </p>
+                    <p>Please also note that parking can be difficult to find. Please check beforehand if your accomodation has parking.</p>
+                </li>
+                <li>
+                    <h5>What can we do in Sorrento?</h5>
+                    <p>Sorrento is perfectly located for exploring the area. Nearby you’ll find the ancient ruins of Pompeii, the stunning Amalfi Coast with its famous towns like Positano and Amalfi, and the island of Capri. In Sorrento itself, you can enjoy charming streets, delicious seafood, and the region’s famous limoncello. The best gelato you'll find in Vico Equese at Gelateria Gabriele.</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+
+
+    <footer>
+        <div class="container">
+            <p class="footer-quote">"When life gives you lemons, make a lifetime of memories"</p>
+            <p class="footer-names">Anni & Ovie</p>
+        </div>
+    </footer>
+
+    <!-- <script>
+        document.querySelector('.rsvp-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your RSVP! We can\'t wait to celebrate with you! 🍋');
+        });
+    </script> -->
