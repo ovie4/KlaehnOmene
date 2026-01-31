@@ -24,10 +24,6 @@
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "outputPath": "dist/KlaehnOmene",
-            "index": {
-              "input": "src/index.html",
-              "output": "index.html"
-            },
             "assets": [
               {
                 "glob": "**/*",
