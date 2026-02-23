@@ -44,7 +44,7 @@ export class HomeComponent {
       email: [''],
       attending: [false, Validators.required],
       guests: [0],
-      dietaryReqs: [''],
+      dietaryReqs: ['omni'],
       requests: [''],
       ceremony: [false],
       dinner: [false],
