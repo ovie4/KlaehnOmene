@@ -119,6 +119,24 @@ body {
     }
 }
 
+.anni {
+    position: relative;
+    top: 0%;
+}
+
+.and {    
+    font-family: $font-mathanifo;
+    font-size: 2rem;
+    font-weight: 300;
+    color: $forest-green;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+    
+    @media (max-width: 768px) {
+        font-size: 1rem;
+    }
+}
+
 .tagline {
     font-family: $serif;
     font-size: 1.5rem;
@@ -126,6 +144,23 @@ body {
     color: $charcoal;
     margin-bottom: 1rem;
     opacity: 0.8;
+
+     @media (max-width: 768px) {
+        font-size: 1rem;
+    }
+}
+
+.tagline-story {
+    font-family: $serif;
+    font-size: 1rem;
+    font-style: italic;
+    color: $charcoal;
+    margin-bottom: 1rem;
+    opacity: 0.8;
+
+     @media (max-width: 768px) {
+        font-size: 0.75rem !important;
+    }
 }
 
 .wedding-date {
@@ -133,7 +168,7 @@ body {
     color: $forest-green;
     font-weight: 400;
     letter-spacing: 3px;
-    text-transform: uppercase;
+    // text-transform: uppercase;
 }
 
 // Story Section
@@ -177,17 +212,32 @@ body {
         font-size: 3rem;
         text-align: center;
         color: $forest-green;
-        margin-bottom: 3rem;
+        // margin-bottom: 3rem;
+    }
+
+}
+
+.details-date {
+     @media (max-width: 768px) {
+        font-size: 1.5rem !important;
     }
 }
 
 .faq {
-    padding: 5rem 0;
+    padding: 5rem 0 0 0;
     background: linear-gradient(135deg, rgba(168, 218, 220, 0.1) 0%, rgba(255, 230, 109, 0.1) 100%);
+    
+    h2 {
+        font-family: $font-mathanifo;
+        font-size: 3rem;
+        text-align: center;
+        color: $forest-green;
+        margin-bottom: 1rem;
+    }
     
     h5 {
         font-family: $font-mathanifo;
-        font-size: 3rem;
+        font-size: 2rem;
         text-align: center;
         color: $forest-green;
         // margin-bottom: ;
@@ -195,7 +245,7 @@ body {
 
     p {
         font-family: $serif;
-        font-size: 1.5rem;
+        font-size: 1rem;
         font-style: italic;
         color: $charcoal;
         margin-bottom: 1rem;
@@ -216,6 +266,7 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
     margin-top: 3rem;
+    
 }
 
 .card {
@@ -238,8 +289,8 @@ body {
     }
     
     h3 {
-        font-family: $serif;
-        font-size: 1.8rem;
+        font-family: $font-mathanifo;
+        font-size: 4rem;
         color: $forest-green;
         margin-bottom: 1rem;
     }
@@ -334,12 +385,12 @@ body {
 
 // Footer
 footer {
-    padding: 4rem 0 2rem;
+    padding: 0 0 2rem;
     text-align: center;
     background: linear-gradient(180deg, transparent 0%, rgba(168, 218, 220, 0.15) 100%);
     
     .footer-quote {
-        font-family: $serif;
+        font-family: $font-mathanifo;
         font-size: 1.5rem;
         font-style: italic;
         color: $forest-green;
@@ -347,7 +398,8 @@ footer {
     }
     
     .footer-names {
-        font-size: 1.2rem;
+        font-family: $font-mathanifo;
+        font-size: 2rem;
         color: $charcoal;
         font-weight: 300;
         letter-spacing: 2px;
@@ -357,7 +409,7 @@ footer {
 // Responsive Design
 @media (max-width: 768px) {
     .hero {
-        padding: 5rem 1rem 4rem;
+        padding: 0;
     }
     
     .story, .details, .rsvp {

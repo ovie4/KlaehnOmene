@@ -14,12 +14,12 @@ export class HomeComponent {
   rsvpForm!: FormGroup;
 
   showInitialRsvp: boolean = true;
-  showRegistrations: boolean = false;
+  showRegistrations: boolean = true;
 
   ceremonyRsvp: boolean = false;
   dinnerRsvp: boolean = false;
-  capriRsvp: boolean = false;
-  boatingRsvp: boolean = false;
+  morningRsvp: boolean = false;
+  capriDayTripRsvp: boolean = false;
   
 
   fb = inject(FormBuilder);
@@ -42,14 +42,14 @@ export class HomeComponent {
     let form = this.fb.group({
       name: ['', Validators.required],
       email: [''],
-      attending: [false, Validators.required],
+      attending: [true, Validators.required],
       guests: [0],
       dietaryReqs: ['omni'],
       requests: [''],
       ceremony: [false],
       dinner: [false],
-      boating: [false],
-      capri: [false],
+      capriDayTrip: [false],
+      morningAfter: [false],
     });
 
     form.get('attending')?.valueChanges.subscribe(val => {
@@ -58,8 +58,8 @@ export class HomeComponent {
         form.get('guests')?.reset();
         form.get('ceremony')?.patchValue(false);
         form.get('dinner')?.patchValue(false);
-        form.get('boating')?.patchValue(false);
-        form.get('capri')?.patchValue(false);
+        form.get('capriDayTrip')?.patchValue(false);
+        form.get('morningAfter')?.patchValue(false);
         this.showRegistrations = false;
       }
       else {
