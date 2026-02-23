@@ -39,13 +39,48 @@ const uri = "mongodb+srv://anniovie:Theklaehn@klaehnomene.rpmxuwh.mongodb.net/?a
 // }
 // run().catch(console.dir);
 
+mongoose.Promise= global.Promise;
+const connect = mongoose.connection;
+mongoose.set('strictQuery', true);
+
+
+const connectDB = async()=>{
+    const url = uri;
+   
+    connect.on('connected', async()=>{
+        console.log('MongoDb Connection Established')
+    })
+    connect.on('reconnected', async()=>{
+        console.log('MongoDB Connection Reestablished')
+    })
+    connect.on('disconnected',()=>{
+        console.log('MongoDB Connection Disconnected')
+        console.log('Trying to reconnect to Mongo...')
+
+
+        setTimeout(()=>{
+            mongoose.connect(url
+          )
+        }, 3000)
+    })
+    connect.on('close',() =>{
+        console.log('Mongo Connection Closed')
+    });
+    connect.on('error', (error) => {
+        console.log('Mongo Connection Error: '+ error)
+    })
+    await mongoose
+    .connect(url)
+    .catch((error) => console.log(error))
+};
+connectDB();
 
 // MongoDB Connection
-mongoose.connect(uri, {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true
-}).then(() => console.log('MongoDB connected'))
-  .catch(err => console.error('MongoDB connection error:', err));
+// mongoose.connect(uri, {
+//   // useNewUrlParser: true,
+//   // useUnifiedTopology: true
+// }).then(() => console.log('MongoDB connected'))
+//   .catch(err => console.error('MongoDB connection error:', err));
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -57,14 +92,30 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.models.User || mongoose.model('User', userSchema);
 
-// Questionnaire Response Schema
-const questionnaireSchema = new mongoose.Schema({
-  userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  answers: { type: Object, required: true },
-  submittedAt: { type: Date, default: Date.now }
+const rsvpSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  createdAt: { type: Date, default: Date.now },
+  attending: { type: Boolean},
+  guests: { type: Number, required: true },
+  dietaryReqs: { type: String},
+  requests: { type: String},
+  ceremony: { type: Boolean},
+  dinner: { type: Boolean},
+  boating: { type: Boolean},
+  capri: { type: Boolean}
 });
 
-const Questionnaire = mongoose.models.Questionnaire || mongoose.model('Questionnaire', questionnaireSchema);
+const Rsvp = mongoose.models.Rsvp || mongoose.model('Rsvp', rsvpSchema);
+
+// Questionnaire Response Schema
+// const questionnaireSchema = new mongoose.Schema({
+//   userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+//   answers: { type: Object, required: true },
+//   submittedAt: { type: Date, default: Date.now }
+// });
+
+// const Questionnaire = mongoose.models.Questionnaire || mongoose.model('Questionnaire', questionnaireSchema);
 
 // Authentication Middleware
 const authenticateToken = (req, res, next) => {
@@ -112,6 +163,44 @@ app.post('/api/register', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }
+});
+
+//RSVP to events
+app.post('/api/rsvp', async (req, res) => {
+ 
+  try {
+    // let rsvp = new Rsvp({
+    //   name: req.body.name,
+    //   email,
+    //   attending,
+    //   guests,
+    //   dietaryReqs, 
+    //   requests,
+    //   ceremony,
+    //   dinner,
+    //   boating,
+    //   capri
+    // });
+    console.log(req.body);
+    const response = await Rsvp.create({
+      name: req.body.name,
+      email: req.body.email,
+      attending: req.body.attending,
+      guests: req.body.guests,
+      dietaryReqs: req.body.dietaryReqs, 
+      requests: req.body.requests,
+      ceremony: req.body.ceremony,
+      dinner: req.body.dinner,
+      boating: req.body.boating,
+      capri: req.body.capri
+    });
+    console.log('created', response);
+    res.status(201).json({ message: 'Rsvp saved successfully', data: response });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+  
 });
 
 // Login
@@ -168,6 +257,8 @@ app.post('/api/questionnaire', authenticateToken, async (req, res) => {
   }
 });
 
+
+
 // Get user's questionnaire responses
 app.get('/api/questionnaire', authenticateToken, async (req, res) => {
   try {
@@ -182,26 +273,3 @@ app.get('/api/questionnaire', authenticateToken, async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
-
-// package.json
-/*
-{
-  "name": "questionnaire-backend",
-  "version": "1.0.0",
-  "main": "server.js",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
-  },
-  "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.0.0",
-    "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^9.0.0",
-    "cors": "^2.8.5"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.22"
-  }
-}
-*/

@@ -1,5 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RsvpService } from '../../api-services/rsvp-service';
+import { takeUntil } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -21,6 +23,7 @@ export class HomeComponent {
   
 
   fb = inject(FormBuilder);
+  rsvpService = inject(RsvpService);
 
   ngOnInit() {
     this.rsvpForm = this.createRsvpForm();
@@ -28,6 +31,7 @@ export class HomeComponent {
 
   onSubmit() {
     console.log('submitted', this.rsvpForm);
+    this.rsvpService.submitRsvp(this.rsvpForm.value).pipe().subscribe(res => console.log(res));
   }
 
   onContinue() {

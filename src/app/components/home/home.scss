@@ -91,7 +91,7 @@ body {
     position: relative;
     // background: linear-gradient(180deg, rgba(255, 244, 183, 0.3) 0%, transparent 100%);
     
-    background: no-repeat center/100% url("../../assets/images/lemon-bg.png");
+    background: no-repeat center/100% url("../../../../public/images/lemon-bg.png");
     
     .lemon-branch {
         width: 100px;
@@ -191,6 +191,15 @@ body {
         text-align: center;
         color: $forest-green;
         // margin-bottom: ;
+    }
+
+    p {
+        font-family: $serif;
+        font-size: 1.5rem;
+        font-style: italic;
+        color: $charcoal;
+        margin-bottom: 1rem;
+        opacity: 0.8;
     }
 
     ul {
