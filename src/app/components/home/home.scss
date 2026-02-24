@@ -84,6 +84,11 @@ body {
     transform: rotate(-60deg);
 }
 
+.lemon-bg {
+    background: no-repeat center/100% url("../../../../public/images/lemon-header.png") !important;
+   padding: 2rem;
+}
+
 // Hero Section
 .hero {
     text-align: center;
@@ -91,8 +96,7 @@ body {
     position: relative;
     // background: linear-gradient(180deg, rgba(255, 244, 183, 0.3) 0%, transparent 100%);
     
-    background: no-repeat center/100% url("../../../../public/images/lemon-bg.png");
-    
+     
     .lemon-branch {
         width: 100px;
         height: 100px;
@@ -149,6 +153,10 @@ body {
      @media (max-width: 768px) {
         font-size: 1rem;
     }
+}
+
+.text-danger {
+    color: red;
 }
 
 .tagline-story {

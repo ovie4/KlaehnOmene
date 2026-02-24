@@ -1,3 +1,4 @@
+    <div class="lemon-bg"></div>
     <div class="lemon-decoration lemon-top-left"></div>
     <div class="lemon-decoration lemon-top-right"></div>
     <div class="lemon-decoration lemon-bottom-left"></div>
@@ -76,28 +77,41 @@
             </div>
         </div>
     </section>
-
-    @if(showInitialRsvp){
-        <section class="rsvp">
-            <div class="container">
-                <h2>Join Our Celebration</h2>
-                <p class="rsvp-subtitle">Please respond by April 1, 2026</p>
-                
-                <form class="rsvp-form" [formGroup]="rsvpForm">
+    
+    <section class="rsvp">
+        <div class="container">
+            <h2>Join Our Celebration</h2>
+            <p class="rsvp-subtitle">Please respond by April 1, 2026</p>
+            
+            <form class="rsvp-form" [formGroup]="rsvpForm">
+                <div class="form-group">
+                    <input type="text" placeholder="Your Name" formControlName="name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" formControlName="email" placeholder="Email Address" required>
+                </div>
+                <div class="form-group">
+                    <label>Will you be Attending</label>
+                    <select formControlName="attending" required>
+                        <!-- <option value="">Will you be attending?</option> -->
+                        <option value="true">Joyfully accepts</option>
+                        <option value="false">Regretfully declines</option>
+                    </select>
+                </div>
+                @if(showRegistrations){
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" formControlName="name" required>
+                        <label>Number of Guests</label>
+                        <input formControlName="guests" type="number" min="1" max="10" placeholder="Number of Guests">
                     </div>
-                    <div class="form-group">
-                        <input type="email" formControlName="email" placeholder="Email Address" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Will you be Attending</label>
-                        <select formControlName="attending" required>
-                            <!-- <option value="">Will you be attending?</option> -->
-                            <option value="true">Joyfully accepts</option>
-                            <option value="false">Regretfully declines</option>
-                        </select>
-                    </div>
+                    @if(guests > 0){
+                        <div class="form-group">
+                            <label>Number of Children under 12</label>
+                            <input formControlName="children" type="number" min="1" max="10" placeholder="Number of Guests">
+                            @if(rsvpForm.get('children')?.touched && rsvpForm.get('children')?.dirty && rsvpForm.get('children')?.hasError('max')) {
+                                <div class="text-danger">There can't be more children than guests</div>
+                            }
+                        </div>                        
+                    }
                     <div class="form-group">
                         <label>Dietary Restrictions</label>
                         <select formControlName="dietaryReqs" placeholder="Dietary Restrictions" required>
@@ -110,34 +124,34 @@
                     <div class="form-group">
                         <textarea placeholder="Special requests" rows="3"></textarea>
                     </div>
-                    @if(showRegistrations){
-                        <div>
-                            <div class="container">
-                                <h4>Register for Events</h4>
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label" for="ceremony-switch">Ceremony and Reception</label>
-                                    <input class="form-check-input" formControlName="ceremony" value="ceremonyRsvp" type="checkbox" role="switch" switch id="ceremony-switch">
-                                </div>
-                                <!-- <div class="form-check form-switch">
-                                    <label class="form-check-label" for="morning-switch">Morning After</label>
-                                    <input class="form-check-input" formControlName="morningAfter" type="checkbox" role="switch" switch id="morning-switch">
-                                </div> -->
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label"  for="dinner-switch">Dinner</label>
-                                    <input class="form-check-input" formControlName="dinner" type="checkbox" role="switch" switch id="dinner-switch">
-                                </div>
-                                <div class="form-check form-switch">
-                                    <label class="form-check-label" for="capri-switch">Capri</label>
-                                    <input class="form-check-input" formControlName="boating" type="checkbox" role="switch" switch id="capri-switch">
-                                </div>
+                    <div>
+                        <div class="container">
+                            <h4>Register for Events</h4>
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="ceremony-switch">Ceremony and Reception</label>
+                                <input class="form-check-input" formControlName="ceremony" value="ceremonyRsvp" type="checkbox" role="switch" switch id="ceremony-switch">
+                            </div>
+                            <!-- <div class="form-check form-switch">
+                                <label class="form-check-label" for="morning-switch">Morning After</label>
+                                <input class="form-check-input" formControlName="morningAfter" type="checkbox" role="switch" switch id="morning-switch">
+                            </div> -->
+                            <div class="form-check form-switch">
+                                <label class="form-check-label"  for="dinner-switch">Dinner</label>
+                                <input class="form-check-input" formControlName="dinner" type="checkbox" role="switch" switch id="dinner-switch">
+                            </div>
+                            <div class="form-check form-switch">
+                                <label class="form-check-label" for="capri-switch">Capri</label>
+                                <input class="form-check-input" formControlName="capriDayTrip" type="checkbox" role="switch" switch id="capri-switch">
                             </div>
                         </div>
-                    }
+                    </div>
+                    
                     <button type="submit" (click)="onSubmit()" class="submit-btn">Send RSVP</button>
-                </form>
-            </div>
-        </section>
-    }
+            
+                }
+            </form>
+        </div>
+    </section>
 
     <section class="faq">
         <div class="container">

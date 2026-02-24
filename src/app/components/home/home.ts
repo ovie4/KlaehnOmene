@@ -20,6 +20,7 @@ export class HomeComponent {
   dinnerRsvp: boolean = false;
   morningRsvp: boolean = false;
   capriDayTripRsvp: boolean = false;
+  guests: number = 0;
   
 
   fb = inject(FormBuilder);
@@ -44,6 +45,7 @@ export class HomeComponent {
       email: [''],
       attending: [true, Validators.required],
       guests: [0],
+      children: [0, Validators.max(this.guests > 0 ? this.guests -1 : 0)],
       dietaryReqs: ['omni'],
       requests: [''],
       ceremony: [false],
@@ -53,8 +55,10 @@ export class HomeComponent {
     });
 
     form.get('attending')?.valueChanges.subscribe(val => {
-      console.log(val);
-      if(!val) {
+      const value = val?.toString() ?? false;
+      // this.showRegistrations = val ? val : true;
+      if(value.toString() === 'false' ) {
+        console.log('val is false');
         form.get('guests')?.reset();
         form.get('ceremony')?.patchValue(false);
         form.get('dinner')?.patchValue(false);
@@ -63,14 +67,25 @@ export class HomeComponent {
         this.showRegistrations = false;
       }
       else {
+        console.log('val is true');
         this.showRegistrations = true;
       }
     });
+
+    form.get('guests')?.valueChanges.subscribe(guests => {
+      this.guests = guests ? guests : 0;
+    })
+
+    // form.get('children')?.hasError('max')
 
     form.valueChanges.subscribe(val => {
       console.log(val, form);
     })
 
     return form;
+  }
+
+  reset(form: FormGroup) {
+    
   }
 }
