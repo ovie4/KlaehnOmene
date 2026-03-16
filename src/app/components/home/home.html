@@ -98,7 +98,26 @@
                         <option value="false">Regretfully declines</option>
                     </select>
                 </div>
-                @if(showRegistrations){
+                @if(showRegistrations){                    
+                    <div class="container">
+                        <h4>Register for Events</h4>
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="ceremony-switch">Ceremony and Reception</label>
+                            <input class="form-check-input" formControlName="ceremony" value="ceremonyRsvp" type="checkbox" role="switch" switch id="ceremony-switch">
+                        </div>
+                        <!-- <div class="form-check form-switch">
+                            <label class="form-check-label" for="morning-switch">Morning After</label>
+                            <input class="form-check-input" formControlName="morningAfter" type="checkbox" role="switch" switch id="morning-switch">
+                        </div> -->
+                        <div class="form-check form-switch">
+                            <label class="form-check-label"  for="dinner-switch">Dinner</label>
+                            <input class="form-check-input" formControlName="dinner" type="checkbox" role="switch" switch id="dinner-switch">
+                        </div>
+                        <div class="form-check form-switch">
+                            <label class="form-check-label" for="capri-switch">Capri</label>
+                            <input class="form-check-input" formControlName="capriDayTrip" type="checkbox" role="switch" switch id="capri-switch">
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>Number of Guests</label>
                         <input formControlName="guestNumber" type="number" min="1" max="10" placeholder="Number of Guests">
@@ -121,22 +140,24 @@
                                         <label>Name</label>
                                         <input formControlName="guestName" type="text" placeholder="Guest Name">
                                     </div>  
-                                    <div class="form-group">
-                                        <label>Dietary Restrictions</label>
-                                        <select formControlName="dietaryReq" placeholder="Dietary Restrictions" required>
-                                            <option value="omni">None</option>
-                                            <option value="vegetarian">Vegetarian</option>
-                                            <option value="vegan">Vegan</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Pick Dinner Menu</label>
-                                        <select formControlName="menu" placeholder="Dinner Menu" required>
-                                            <option value="sorrento">Bruschette and Caprese salad / Fried Finger Food / Margherita Pizza / Dessert</option>
-                                            <option value="capri">Cocktail Shrimp / Homemade seafood pasta / Mix Salad / Dessert</option>
-                                            <option value="napoli">Bruschette / "Nerano Style" spaghetti with courgette / Beef slices on arugula anc cherry tomato salad / Dessert</option>
-                                        </select>
-                                    </div>
+                                    @if(rsvpForm.get('dinner')?.value) {
+                                        <div class="form-group">
+                                            <label>Dietary Restrictions</label>
+                                            <select formControlName="dietaryReq" placeholder="Dietary Restrictions" required>
+                                                <option value="omni">None</option>
+                                                <option value="vegetarian">Vegetarian</option>
+                                                <option value="vegan">Vegan</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Pick Dinner Menu</label>
+                                            <select formControlName="menu" placeholder="Dinner Menu" required>
+                                                <option value="sorrento">Bruschette and Caprese salad / Fried Finger Food / Margherita Pizza / Dessert</option>
+                                                <option value="capri">Cocktail Shrimp / Homemade seafood pasta / Mix Salad / Dessert</option>
+                                                <option value="napoli">Bruschette / "Nerano Style" spaghetti with courgette / Beef slices on arugula anc cherry tomato salad / Dessert</option>
+                                            </select>
+                                        </div>
+                                    }
                                     <!-- <button command="show-modal" commandfor="my-dialog">Select Menu</button>
 
                                     <dialog id="my-dialog">
@@ -151,25 +172,6 @@
                         <textarea placeholder="Special requests" rows="3"></textarea>
                     </div>
                     <div>
-                        <div class="container">
-                            <h4>Register for Events</h4>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="ceremony-switch">Ceremony and Reception</label>
-                                <input class="form-check-input" formControlName="ceremony" value="ceremonyRsvp" type="checkbox" role="switch" switch id="ceremony-switch">
-                            </div>
-                            <!-- <div class="form-check form-switch">
-                                <label class="form-check-label" for="morning-switch">Morning After</label>
-                                <input class="form-check-input" formControlName="morningAfter" type="checkbox" role="switch" switch id="morning-switch">
-                            </div> -->
-                            <div class="form-check form-switch">
-                                <label class="form-check-label"  for="dinner-switch">Dinner</label>
-                                <input class="form-check-input" formControlName="dinner" type="checkbox" role="switch" switch id="dinner-switch">
-                            </div>
-                            <div class="form-check form-switch">
-                                <label class="form-check-label" for="capri-switch">Capri</label>
-                                <input class="form-check-input" formControlName="capriDayTrip" type="checkbox" role="switch" switch id="capri-switch">
-                            </div>
-                        </div>
                     </div>                   
                     
                 }
