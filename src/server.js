@@ -97,12 +97,13 @@ const rsvpSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   createdAt: { type: Date, default: Date.now },
   attending: { type: Boolean},
-  guests: { type: Number, required: true },
+  guestNumber: {type: Number},
+  guests: { type: []},
+  children: { type: Number},
   dietaryReqs: { type: String},
   requests: { type: String},
   ceremony: { type: Boolean},
   dinner: { type: Boolean},
-  boating: { type: Boolean},
   capri: { type: Boolean}
 });
 
@@ -186,13 +187,12 @@ app.post('/api/rsvp', async (req, res) => {
       name: req.body.name,
       email: req.body.email,
       attending: req.body.attending,
-      guests: req.body.guests,
-      dietaryReqs: req.body.dietaryReqs, 
+      guestNumber: req.body.guestNumber,
+      guests: req.body.guests,  
       requests: req.body.requests,
       ceremony: req.body.ceremony,
       dinner: req.body.dinner,
-      boating: req.body.boating,
-      capri: req.body.capri
+      capri: req.body.capriDayTrip
     });
     console.log('created', response);
     res.status(201).json({ message: 'Rsvp saved successfully', data: response });

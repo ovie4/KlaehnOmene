@@ -51,9 +51,9 @@
                 <h2 class="details-date">22 May 2026</h2>
                 <div class="card">
                     <div class="card-icon">🍋</div>
-                    <h3>Morning After</h3>
+                    <h3>Day After</h3>
                     <p class="time">10:00 - 18:00</p>
-                    <p>Relaxed Morning in Sorrento</p>
+                    <p>Relaxed day in Sorrento</p>
                     <!-- <p>80067 Sorrent, Neapel, Italien</p> -->
                 </div>
                 <div class="card">
@@ -101,26 +101,52 @@
                 @if(showRegistrations){
                     <div class="form-group">
                         <label>Number of Guests</label>
-                        <input formControlName="guests" type="number" min="1" max="10" placeholder="Number of Guests">
+                        <input formControlName="guestNumber" type="number" min="1" max="10" placeholder="Number of Guests">
                     </div>
-                    @if(guests > 0){
-                        <div class="form-group">
-                            <label>Number of Children under 12</label>
-                            <input formControlName="children" type="number" min="1" max="10" placeholder="Number of Guests">
-                            @if(rsvpForm.get('children')?.touched && rsvpForm.get('children')?.dirty && rsvpForm.get('children')?.hasError('max')) {
-                                <div class="text-danger">There can't be more children than guests</div>
+                    @if(guestNum > 0){
+                        <div class="guest-interior card" [formArray]="guestControls" style="margin-bottom: 1rem;">
+                            @for(guest of guestControls.controls; track $index; let i = $index){
+                                <div [formGroupName]="i" style="margin-bottom: 0.5rem;">
+                                    <div class="form-check form-switch" style="text-align: start; padding-left: 2.5rem;">
+                                        <label class="form-check-label"  for="child-switch">Is this guest a child?</label>
+                                        <input class="form-check-input" formControlName="isChild" type="checkbox" role="switch" switch id="child-switch">
+                                    </div>
+                                    @if(guest.get('isChild')?.touched && guest.get('isChild')?.dirty && guest.get('isChild')?.value) {
+                                        <div class="form-group">
+                                            <label>Child Age</label>
+                                            <input formControlName="childAge" type="number" min="1" max="18" placeholder="Child's Age">                                        
+                                        </div>  
+                                    }                      
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input formControlName="guestName" type="text" placeholder="Guest Name">
+                                    </div>  
+                                    <div class="form-group">
+                                        <label>Dietary Restrictions</label>
+                                        <select formControlName="dietaryReq" placeholder="Dietary Restrictions" required>
+                                            <option value="omni">None</option>
+                                            <option value="vegetarian">Vegetarian</option>
+                                            <option value="vegan">Vegan</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Pick Dinner Menu</label>
+                                        <select formControlName="menu" placeholder="Dinner Menu" required>
+                                            <option value="sorrento">Bruschette and Caprese salad / Fried Finger Food / Margherita Pizza / Dessert</option>
+                                            <option value="capri">Cocktail Shrimp / Homemade seafood pasta / Mix Salad / Dessert</option>
+                                            <option value="napoli">Bruschette / "Nerano Style" spaghetti with courgette / Beef slices on arugula anc cherry tomato salad / Dessert</option>
+                                        </select>
+                                    </div>
+                                    <!-- <button command="show-modal" commandfor="my-dialog">Select Menu</button>
+
+                                    <dialog id="my-dialog">
+                                        <p>This dialog was opened using an invoker command.</p>
+                                        <button commandfor="my-dialog" command="close">Close</button>
+                                    </dialog> -->
+                                </div>
                             }
-                        </div>                        
+                        </div>
                     }
-                    <div class="form-group">
-                        <label>Dietary Restrictions</label>
-                        <select formControlName="dietaryReqs" placeholder="Dietary Restrictions" required>
-                            <!-- <option value="">None/Cool Person</option> -->
-                            <option value="omni">None/I am cool</option>
-                            <option value="vegetarian">Vegetarian/Boring</option>
-                            <option value="vegan">Vegan/I have no friends</option>
-                        </select>
-                    </div>
                     <div class="form-group">
                         <textarea placeholder="Special requests" rows="3"></textarea>
                     </div>
@@ -144,11 +170,11 @@
                                 <input class="form-check-input" formControlName="capriDayTrip" type="checkbox" role="switch" switch id="capri-switch">
                             </div>
                         </div>
-                    </div>
+                    </div>                   
                     
-                    <button type="submit" (click)="onSubmit()" class="submit-btn">Send RSVP</button>
-            
                 }
+                <button type="submit" (click)="onSubmit()" class="submit-btn">Send RSVP</button>
+            
             </form>
         </div>
     </section>
@@ -194,7 +220,7 @@
                         It's easy to get around by train. During the night there are busses instead of the train.
                     </p>
                     <p>
-                        Please note that driving in this area can be challenging as Napoli drivers are quite intense and the serpentines can be nerve-wrecking as well. If you feel comfortable driving in Berlin-Neukölln or Nigeria, you'll be fine though
+                        Please note that driving in this area can be challenging as Napoli drivers are quite intense and the serpentines can be nerve-wrecking as well. 
                     </p>
                     <p>Please also note that parking can be difficult to find. Please check beforehand if your accomodation has parking.</p>
                 <!-- </li> -->
